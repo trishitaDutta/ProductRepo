@@ -9,7 +9,7 @@ import com.product.model.ProductResponseDto;
 public interface ProductService {
 	
 	Product saveProduct(ProductRequestDto product);
-	List<ProductResponseDto> getProducts();
+	List<ProductResponseDto> getAllProducts();
     Product getProductById(Long id);
     //List<Product> getProductByName(String name);
     //Product updateProduct(Product product);

@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
     //method to get all products
     @Override
-    public List<ProductResponseDto> getProducts() {
+    public List<ProductResponseDto> getAllProducts() {
     	List<Product> products = repository.findAll();
     	    	return products.stream().map(this::maoToProductResponse).collect(Collectors.toList());
     }
@@ -59,6 +59,7 @@ public class ProductServiceImpl implements ProductService {
 	 * @Override public List<Product> getProductByName(String name) { return
 	 * repository.findByName(name); }
 	 */
+    
   //method to delete a product by its Id
     @Override
     public String deleteProduct(Long id) {
