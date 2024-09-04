@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(
-		name = "products",
+		name = "product",
 		schema = "ecommerce",
 		uniqueConstraints = {
 				@UniqueConstraint(columnNames={"productcode"})
@@ -38,7 +38,7 @@ public class Product {
     		schema = "ecommerce"
     )
     @Column(name = "productid")
-    private Long id;
+    private Integer id;
     
     @Column(nullable = false)
     private Boolean availibility;

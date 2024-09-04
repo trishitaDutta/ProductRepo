@@ -52,7 +52,7 @@ public class ProductController {
 	 * //GET - get product by Id
 	 * 
 	 * @GetMapping(value = "/getProductsById/{id}") public ResponseEntity<?>
-	 * getProductsById(@PathVariable("id") Long productId) {
+	 * getProductsById(@PathVariable("id") Integer productId) {
 	 * 
 	 * Optional<Product> product =
 	 * Optional.ofNullable(service.getProductById(productId));
@@ -82,7 +82,7 @@ public class ProductController {
 	 * ResponseEntity<>(product, HttpStatus.NOT_FOUND); } }
 	 * 
 	 * @DeleteMapping("/deleteProductById/{id}") public ResponseEntity<?>
-	 * deleteProductById(@PathVariable("id") Long productId) {
+	 * deleteProductById(@PathVariable("id") Integer productId) {
 	 * 
 	 * if(productId != null) { String result = service.deleteProduct(productId);
 	 * return new ResponseEntity<>(result, HttpStatus.OK); }else { return new

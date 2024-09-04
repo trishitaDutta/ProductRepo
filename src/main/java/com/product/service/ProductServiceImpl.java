@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     }
     //method to get a product by its Id
     @Override
-    public Product getProductById(Long id) {
+    public Product getProductById(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService {
     
   //method to delete a product by its Id
     @Override
-    public String deleteProduct(Long id) {
+    public String deleteProduct(Integer id) {
     	
     	repository.deleteById(id);
         return "product removed !! " + id;

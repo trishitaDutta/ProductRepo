@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductResponseDto {
 
-	private long id;
+	private Integer id;
 	private Boolean availibility;
 	private String code;
     private String name;

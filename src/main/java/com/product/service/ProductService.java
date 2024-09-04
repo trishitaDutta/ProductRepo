@@ -10,10 +10,10 @@ public interface ProductService {
 	
 	Product saveProduct(ProductRequestDto product);
 	List<ProductResponseDto> getAllProducts();
-    Product getProductById(Long id);
+    Product getProductById(Integer id);
     //List<Product> getProductByName(String name);
     //Product updateProduct(Product product);
-    String deleteProduct(Long id);
+    String deleteProduct(Integer id);
 
 }
 

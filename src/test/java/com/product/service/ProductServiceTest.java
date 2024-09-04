@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.product.service;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.when;
@@ -13,8 +13,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import com.product.model.Product;
 import com.product.model.ProductRequestDto;
@@ -22,7 +20,7 @@ import com.product.repository.ProductRepository;
 import com.product.service.ProductServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductServiceTests {
+public class ProductServiceTest {
 	
 	// Creating a Mock to mimic EmployeeRepository.
     @Mock
@@ -34,7 +32,7 @@ public class ProductServiceTests {
 
     // A test method to test the create method of the ProductServiceImpl class.
     @Test
-    public void createProduct(){
+    public void productServiceImpl_saveProduct_returnedSavedProduct(){
     	
         // Creating an instance of Product to be used for the test.
         Product product = new Product();
@@ -64,7 +62,7 @@ public class ProductServiceTests {
     @Test
     public void checkProductExists(){
         // Arrange
-        Long productId = 2L;
+    	Integer productId = 2;
         when(productRepository.findById(productId)).thenReturn(Optional.empty());
 
         // Act
