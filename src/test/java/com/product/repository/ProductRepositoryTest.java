@@ -37,7 +37,7 @@ public class ProductRepositoryTest {
 		Product savedProduct = repository.save(product);
 
 		//Assert
-		 Assertions.assertThat(savedProduct).isNotNull();
+		assertNotNull(savedProduct);
 		 Assertions.assertThat(savedProduct.getId()).isGreaterThan(0);
 	}
 	

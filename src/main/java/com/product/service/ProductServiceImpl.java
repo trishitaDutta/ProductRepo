@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.product.exception.ProductNotFoundException;
 import com.product.model.Product;
 import com.product.model.ProductRequestDto;
 import com.product.model.ProductResponseDto;
@@ -50,8 +52,10 @@ public class ProductServiceImpl implements ProductService {
     }
     //method to get a product by its Id
     @Override
-    public Product getProductById(Integer id) {
-        return repository.findById(id).orElse(null);
+    public Optional<Product> getProductById(Integer id) {
+    	
+    	return Optional.ofNullable(repository.findById(id)
+         .orElseThrow(() -> new ProductNotFoundException(id)));
     }
 
   //method to get a product by its name
@@ -60,27 +64,32 @@ public class ProductServiceImpl implements ProductService {
 	 * repository.findByName(name); }
 	 */
     
+    //method to update an existing product
+	@Override 
+	public Product updateProduct(Product product) {
+  	  
+  	Product existingProduct = repository.findById(product.getId()).orElseThrow(() -> new ProductNotFoundException(product.getId()));
+  	if(existingProduct != null) {
+  		
+	  	existingProduct.setAvailibility(product.getAvailibility());
+	  	existingProduct.setName(product.getName());
+	  	existingProduct.setCode(product.getCode());
+	  	existingProduct.setPrice(product.getPrice());
+	  	return repository.save(existingProduct);
+	 }
+  	return null;
+  	  
+  	}
+  	 
+
+    
   //method to delete a product by its Id
     @Override
     public String deleteProduct(Integer id) {
     	
+    	repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     	repository.deleteById(id);
         return "product removed !! " + id;
     }
-    
-    //method to update an existing product
-	/*
-	 * @Override public Product updateProduct(Product product) {
-	 * 
-	 * Product existingProduct = repository.findById(product.getId()).orElse(null);
-	 * existingProduct.setAvailibility(product.getAvailibility());
-	 * existingProduct.setName(product.getName());
-	 * existingProduct.setCode(product.getCode());
-	 * existingProduct.setPrice(product.getPrice());
-	 * 
-	 * return repository.save(existingProduct);
-	 * 
-	 * }
-	 */
 
 }

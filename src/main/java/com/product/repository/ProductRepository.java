@@ -11,7 +11,7 @@ import com.product.model.Product;
 public interface ProductRepository extends JpaRepository<Product,Integer> {
 	
 	
-	 @Query("SELECT p FROM product p WHERE p.productname = ?1") List<Product>
+	 @Query(value = "SELECT p FROM product p WHERE p.productname = ?1", nativeQuery = true) List<Product>
 	 findByName(String name);
 	 
 }

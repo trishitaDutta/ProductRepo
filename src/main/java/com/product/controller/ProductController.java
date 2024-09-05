@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,46 +47,56 @@ public class ProductController {
 		
     }
 	
-	/*
-	 * //GET - get product by Id
-	 * 
-	 * @GetMapping(value = "/getProductsById/{id}") public ResponseEntity<?>
-	 * getProductsById(@PathVariable("id") Integer productId) {
-	 * 
-	 * Optional<Product> product =
-	 * Optional.ofNullable(service.getProductById(productId));
-	 * 
-	 * if(product.isPresent()) { return new ResponseEntity<>(product,
-	 * HttpStatus.OK); }else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); }
-	 * 
-	 * }
-	 * 
-	 * @GetMapping("/getProductByName/{name}") public ResponseEntity<?>
-	 * getProductByName(@PathVariable("name") String name) {
-	 * 
-	 * 
-	 * Optional< List<Product>> productList =
-	 * Optional.ofNullable(service.getProductByName(name));
-	 * 
-	 * if(productList.isPresent()) { return new ResponseEntity<>(productList,
-	 * HttpStatus.OK); }else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); }
-	 * 
-	 * }
-	 * 
-	 * @PutMapping("/updateProduct") public ResponseEntity<?>
-	 * updateProduct(@RequestBody Product product) {
-	 * 
-	 * if(product.getId().toString() != null) { service.updateProduct(product);
-	 * return new ResponseEntity<>(product, HttpStatus.OK); }else { return new
-	 * ResponseEntity<>(product, HttpStatus.NOT_FOUND); } }
-	 * 
-	 * @DeleteMapping("/deleteProductById/{id}") public ResponseEntity<?>
-	 * deleteProductById(@PathVariable("id") Integer productId) {
-	 * 
-	 * if(productId != null) { String result = service.deleteProduct(productId);
-	 * return new ResponseEntity<>(result, HttpStatus.OK); }else { return new
-	 * ResponseEntity<>(HttpStatus.NOT_FOUND); } }
-	 */
+	
+	 //3. GET - get product by Id
+	 @GetMapping(value = "/getProductById/{id}") 
+	 public ResponseEntity<?> getProductsById(@PathVariable("id") Integer productId) {
+	  
+		  Optional<Product> product = service.getProductById(productId);
+		  if(product.isPresent()) { 
+				  return new ResponseEntity<>(product,HttpStatus.OK);
+		  }else { 
+				  return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+		  }
+	 }
+	  
+	  /*@GetMapping("/getProductByName/{name}") public ResponseEntity<?>
+	  getProductByName(@PathVariable("name") String name) {
+	  
+	  
+	  Optional< List<Product>> productList =
+	  Optional.ofNullable(service.getProductByName(name));
+	  
+	  if(productList.isPresent()) { return new ResponseEntity<>(productList,
+	  HttpStatus.OK); }else { return new ResponseEntity<>(HttpStatus.NOT_FOUND); }
+	  
+	  }*/
+	 
+	 
+	//4. PUT - Update an existing product
+	@PutMapping("/updateProduct") 
+	public ResponseEntity<?> updateProduct(@RequestBody Product product) {
+	  
+		if(product.getId().toString() != null) { 
+		  service.updateProduct(product);
+		  return new ResponseEntity<>(product, HttpStatus.OK); 
+		}else { 
+		  return new ResponseEntity<>(product, HttpStatus.NOT_FOUND); 
+		} 
+	}
+	  
+	//5. DELETE - Delete an existing product
+	@DeleteMapping("/deleteProductById/{id}") 
+	public ResponseEntity<?> deleteProductById(@PathVariable("id") Integer productId) {
+	  
+	  if(productId != null) { 
+		  String result = service.deleteProduct(productId);
+		  return new ResponseEntity<>(result, HttpStatus.OK); 
+	  }else { 
+		  return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+	  }
+	}
+	 
 	
 
 }

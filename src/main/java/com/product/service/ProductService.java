@@ -1,6 +1,7 @@
 package com.product.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.product.model.Product;
 import com.product.model.ProductRequestDto;
@@ -10,9 +11,9 @@ public interface ProductService {
 	
 	Product saveProduct(ProductRequestDto product);
 	List<ProductResponseDto> getAllProducts();
-    Product getProductById(Integer id);
+    Optional<Product> getProductById(Integer id);
     //List<Product> getProductByName(String name);
-    //Product updateProduct(Product product);
+    Product updateProduct(Product product);
     String deleteProduct(Integer id);
 
 }
