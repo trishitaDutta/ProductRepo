@@ -131,4 +131,27 @@ public class ProductServiceTest {
     	
     }
     
+    @Test
+    public void productService_updateProduct_returnUpdatedProduct() {
+    	
+    	Product product =Product.builder()						  
+				  .availibility(true)
+				  .code("iphn0013")
+				  .name("Iphone13")
+				  .price("50000")
+				  .build();
+    	
+    	when(productRepository.findById(product.getId())).thenReturn(Optional.of(product));
+    	
+    	product.setName("Iphone15");
+    	product.setCode("iphn0015");
+
+    	productRepository.save(product);
+    	Product updatedProduct = productRepository.findById(product.getId()).orElse(null);
+        
+    	assertThat(updatedProduct.getName()).isEqualTo("Iphone15");
+    	assertThat(updatedProduct.getCode()).isEqualTo("iphn0015");
+    }
+
+    
 }
